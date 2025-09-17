@@ -1,0 +1,232 @@
+/* styles/responsive.css - 모던한 반응형 스타일 */
+
+/* 데스크톱 */
+@media (min-width: 1024px) {
+  .container-modern {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .grid-lg-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-lg-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+  
+  .modern-card {
+    margin: 0;
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .card-body-modern {
+    padding: 1.5rem;
+  }
+  
+  .navbar-content {
+    padding: 0 1rem;
+  }
+  
+  .navbar-brand-modern {
+    font-size: 1.25rem;
+  }
+  
+  .stats-number {
+    font-size: 2.5rem;
+  }
+  
+  .btn-modern {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .table-modern {
+    font-size: 0.875rem;
+  }
+  
+  .table-modern th,
+  .table-modern td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .grid-md-1 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid {
+    gap: 1rem;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 0.5rem;
+  }
+  
+  .card-body-modern {
+    padding: 1rem;
+  }
+  
+  .form-control-modern {
+    padding: 0.75rem;
+    font-size: 16px; /* iOS 줌 방지 */
+  }
+  
+  .btn-modern {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-sm-modern {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .navbar-brand-modern {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .navbar-user {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stats-number {
+    font-size: 2rem;
+  }
+  
+  .stats-label {
+    font-size: 0.875rem;
+  }
+  
+  .table-modern {
+    font-size: 0.75rem;
+  }
+  
+  .table-modern th,
+  .table-modern td {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  /* 모바일에서 테이블 가로스크롤 */
+  .table-responsive-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .success-icon-modern {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .success-checkmark {
+    font-size: 1.5rem;
+  }
+  
+  .admin-link-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .grid {
+    gap: 0.75rem;
+  }
+}
+
+/* 아주 작은 화면 */
+@media (max-width: 320px) {
+  .page-container {
+    padding: 0.25rem;
+  }
+  
+  .modern-card {
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .card-body-modern {
+    padding: 0.75rem;
+  }
+  
+  .stats-number {
+    font-size: 1.75rem;
+  }
+  
+  .btn-modern {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* 프린트 스타일 */
+@media print {
+  .navbar-modern,
+  .btn-modern,
+  .admin-link-container {
+    display: none !important;
+  }
+  
+  .page-container {
+    background: white !important;
+    padding: 0;
+  }
+  
+  .modern-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .table-modern {
+    box-shadow: none;
+  }
+  
+  * {
+    color: black !important;
+    background: white !important;
+  }
+}
+
+/* 다크모드 대응 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  /* 다크모드 스타일은 나중에 추가 가능 */
+}
+
+/* 접근성 - 움직임 감소 선호 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 높은 대비 모드 */
+@media (prefers-contrast: high) {
+  .form-control-modern {
+    border-width: 3px;
+  }
+  
+  .btn-modern {
+    border: 2px solid currentColor;
+  }
+}
