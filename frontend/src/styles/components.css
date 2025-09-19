@@ -1,14 +1,19 @@
-/* 카드 스타일 */
+/* 모바일 우선 컴포넌트 스타일 */
+
+/* 카드 스타일 - 모바일 최적화 */
 .modern-card {
   background: white;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
   border: none;
   overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .card-body-modern {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .card-header-modern {
@@ -20,9 +25,9 @@
   font-size: 1.1rem;
 }
 
-/* 폼 스타일 */
+/* 폼 스타일 - 모바일 터치 최적화 */
 .form-group-modern {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-label-modern {
@@ -31,39 +36,45 @@
   font-weight: 600;
   color: var(--text-primary);
   font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .form-control-modern {
   width: 100%;
-  padding: 0.875rem 1rem;
-  font-size: 1rem;
+  padding: 1rem;
+  font-size: 16px; /* iOS 줌 방지 */
   border: 2px solid var(--border-color);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius);
   background-color: white;
   transition: all 0.2s ease;
+  min-height: 48px; /* 터치 친화적 */
+  outline: none;
 }
 
 .form-control-modern:focus {
-  outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 버튼 스타일 */
+.form-control-modern.error {
+  border-color: #dc3545;
+}
+
+/* 버튼 스타일 - 모바일 터치 최적화 */
 .btn-modern {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.875rem 2rem;
-  font-size: 1rem;
+  padding: 1.25rem 2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   text-decoration: none;
   border: none;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: all 0.2s ease;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .btn-primary-modern {
@@ -73,7 +84,10 @@
 
 .btn-primary-modern:hover:not(:disabled) {
   background-color: #333333;
-  transform: translateY(-1px);
+}
+
+.btn-primary-modern:active {
+  transform: scale(0.98);
 }
 
 .btn-outline-modern {
@@ -93,20 +107,36 @@
 }
 
 .btn-sm-modern {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-size: 0.875rem;
+  min-height: 40px;
 }
 
 .btn-full-modern {
   width: 100%;
 }
 
-/* 네비게이션 */
+.btn-modern:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 관리자 네비게이션 - 데스크톱 전용 */
 .navbar-modern {
   background-color: var(--primary-color);
   color: white;
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .navbar-brand-modern {
@@ -126,7 +156,7 @@
   font-size: 0.875rem;
 }
 
-/* 테이블 스타일 */
+/* 관리자 테이블 - 데스크톱 전용 */
 .table-modern {
   width: 100%;
   background: white;
@@ -162,7 +192,7 @@
   background-color: var(--surface-color);
 }
 
-/* 통계 카드 */
+/* 통계 카드 - 관리자 페이지 전용 */
 .stats-card {
   background: white;
   border-radius: var(--border-radius);
@@ -186,7 +216,40 @@
   font-weight: 500;
 }
 
-/* 로딩 */
+/* 성공 페이지 아이콘 */
+.success-icon-modern {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  backgroundColor: #28a745;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  animation: checkmark 0.6s ease-in-out 0.3s both;
+}
+
+.success-checkmark {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 로딩 스피너 */
 .loading-container {
   display: flex;
   justify-content: center;
@@ -208,7 +271,28 @@
   100% { transform: rotate(360deg); }
 }
 
-/* 유틸리티 */
+/* 빈 상태 */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--secondary-color);
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+  color: var(--secondary-color);
+}
+
+/* 에러 메시지 */
+.error-message {
+  color: #dc3545;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* 유틸리티 클래스 */
 .text-center {
   text-align: center;
 }
@@ -217,16 +301,245 @@
   color: var(--secondary-color);
 }
 
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 0.75rem; }
 .mb-3 { margin-bottom: 1rem; }
 .mb-4 { margin-bottom: 1.5rem; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 0.75rem; }
+.mt-3 { margin-top: 1rem; }
 .mt-4 { margin-top: 1.5rem; }
 
-.empty-state {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: var(--secondary-color);
+/* 모바일 특화 반응형 조정 */
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  .modern-card {
+    margin: 0.5rem;
+    border-radius: var(--border-radius);
+  }
+
+  .card-body-modern {
+    padding: 1rem;
+  }
+
+  .btn-modern {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .btn-sm-modern {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .form-control-modern {
+    padding: 0.875rem;
+  }
+
+  .success-icon-modern {
+    width: 60px;
+    height: 60px;
+  }
+
+  .success-checkmark {
+    font-size: 1.5rem;
+  }
+
+  .stats-number {
+    font-size: 2.5rem;
+  }
 }
 
-.table-responsive-mobile {
-  overflow-x: auto;
+/* 매우 작은 화면 (360px 이하) */
+@media (max-width: 360px) {
+  .modern-card {
+    margin: 0.25rem;
+    border-radius: 12px;
+  }
+
+  .card-body-modern {
+    padding: 0.75rem;
+  }
+
+  .btn-modern {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .form-control-modern {
+    padding: 0.75rem;
+  }
+
+  .success-icon-modern {
+    width: 50px;
+    height: 50px;
+  }
+
+  .success-checkmark {
+    font-size: 1.25rem;
+  }
+
+  .stats-number {
+    font-size: 2rem;
+  }
+}
+
+/* 태블릿 (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .modern-card {
+    max-width: 500px;
+  }
+
+  .card-body-modern {
+    padding: 2rem;
+  }
+
+  .btn-modern {
+    padding: 1.25rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .stats-card {
+    padding: 2.5rem;
+  }
+}
+
+/* 데스크톱 (1024px 이상) - 관리자 페이지 전용 */
+@media (min-width: 1024px) {
+  /* 일반 페이지들은 모바일 중심 유지 */
+  .landing-page .modern-card,
+  .success-page .modern-card,
+  .login-page .modern-card {
+    max-width: 450px;
+  }
+
+  /* 관리자 페이지만 데스크톱 최적화 */
+  .admin-page {
+    width: 100%;
+    max-width: none;
+  }
+
+  .admin-page .navbar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .admin-page .stats-card {
+    padding: 2rem;
+  }
+
+  .admin-page .table-modern {
+    font-size: 0.875rem;
+  }
+
+  .admin-page .table-modern th,
+  .admin-page .table-modern td {
+    padding: 1rem;
+  }
+}
+
+/* 가로모드 모바일 대응 */
+@media (max-height: 600px) and (orientation: landscape) {
+  .modern-card {
+    margin: 0.5rem 0;
+  }
+
+  .card-body-modern {
+    padding: 1rem;
+  }
+
+  .btn-modern {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .success-icon-modern {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .success-checkmark {
+    font-size: 1.5rem;
+  }
+}
+
+/* 터치 최적화 */
+@media (pointer: coarse) {
+  .btn-modern,
+  button,
+  .form-control-modern {
+    min-height: 44px;
+  }
+
+  .btn-sm-modern {
+    min-height: 40px;
+  }
+}
+
+/* 관리자 링크 (우상단) */
+.admin-link-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+.admin-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.admin-link:hover,
+.admin-link:active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* 모바일에서 관리자 링크 축소 */
+@media (max-width: 480px) {
+  .admin-link {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* 애니메이션 */
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

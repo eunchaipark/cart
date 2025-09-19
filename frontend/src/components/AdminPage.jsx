@@ -159,9 +159,12 @@ const AdminPage = ({ onLogout, adminInfo }) => {
             }}>
               고객 정보 #{selectedCustomer.id}
             </div>
+            
             <div style={{ padding: '2rem' }}>
+              {/* 세로 레이아웃으로 단순하게 */}
               <div style={{
-                display: 'grid',
+                display: 'flex',
+                flexDirection: 'column',
                 gap: '1.5rem'
               }}>
                 <div>
@@ -257,7 +260,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
       backgroundColor: '#f8f9fa',
       width: '100%'
     }}>
-      {/* 네비게이션 바 - 전체 화면 너비 */}
+      {/* 네비게이션 바 */}
       <nav style={{
         backgroundColor: '#000000',
         color: 'white',
@@ -309,7 +312,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
         </div>
       </nav>
 
-      {/* 메인 컨텐츠 - 전체 화면 사용 */}
+      {/* 메인 컨텐츠 */}
       <div style={{
         padding: '2rem',
         width: '100%'
@@ -372,7 +375,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
           </div>
         </div>
 
-        {/* 테이블 섹션 - 전체 너비 사용 */}
+        {/* 테이블 섹션 */}
         <div style={{
           width: '100%',
           background: 'white',
@@ -413,11 +416,11 @@ const AdminPage = ({ onLogout, adminInfo }) => {
               color: '#6c757d'
             }}>
               <div style={{
-                fontSize: '4rem',
+                fontSize: '2rem',
                 marginBottom: '1rem',
                 opacity: '0.5'
               }}>
-                📋
+                목록이 비어있습니다
               </div>
               <div>등록된 고객 정보가 없습니다.</div>
             </div>
@@ -430,7 +433,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                 <thead>
                   <tr style={{ backgroundColor: '#f8f9fa' }}>
                     <th style={{
-                      padding: '1rem',
+                      padding: '0.75rem 1rem',
                       textAlign: 'left',
                       fontWeight: '600',
                       color: '#212529',
@@ -443,7 +446,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                       번호
                     </th>
                     <th style={{
-                      padding: '1rem',
+                      padding: '0.75rem 1rem',
                       textAlign: 'left',
                       fontWeight: '600',
                       color: '#212529',
@@ -456,7 +459,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                       이름
                     </th>
                     <th style={{
-                      padding: '1rem',
+                      padding: '0.75rem 1rem',
                       textAlign: 'left',
                       fontWeight: '600',
                       color: '#212529',
@@ -469,7 +472,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                       전화번호
                     </th>
                     <th style={{
-                      padding: '1rem',
+                      padding: '0.75rem 1rem',
                       textAlign: 'left',
                       fontWeight: '600',
                       color: '#212529',
@@ -482,7 +485,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                       업체명
                     </th>
                     <th style={{
-                      padding: '1rem',
+                      padding: '0.75rem 1rem',
                       textAlign: 'left',
                       fontWeight: '600',
                       color: '#212529',
@@ -495,7 +498,7 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                       신청일시
                     </th>
                     <th style={{
-                      padding: '1rem',
+                      padding: '0.75rem 1rem',
                       textAlign: 'center',
                       fontWeight: '600',
                       color: '#212529',
@@ -524,42 +527,42 @@ const AdminPage = ({ onLogout, adminInfo }) => {
                       }}
                     >
                       <td style={{
-                        padding: '1rem',
+                        padding: '0.75rem 1rem',
                         borderBottom: '1px solid #e9ecef',
                         color: '#212529'
                       }}>
                         {index + 1}
                       </td>
                       <td style={{
-                        padding: '1rem',
+                        padding: '0.75rem 1rem',
                         borderBottom: '1px solid #e9ecef',
                         color: '#212529'
                       }}>
                         {customer.name}
                       </td>
                       <td style={{
-                        padding: '1rem',
+                        padding: '0.75rem 1rem',
                         borderBottom: '1px solid #e9ecef',
                         color: '#212529'
                       }}>
                         {customer.phoneNumber}
                       </td>
                       <td style={{
-                        padding: '1rem',
+                        padding: '0.75rem 1rem',
                         borderBottom: '1px solid #e9ecef',
                         color: '#212529'
                       }}>
                         {customer.companyName}
                       </td>
                       <td style={{
-                        padding: '1rem',
+                        padding: '0.75rem 1rem',
                         borderBottom: '1px solid #e9ecef',
                         color: '#212529'
                       }}>
                         {formatDateTime(customer.createdAt)}
                       </td>
                       <td style={{
-                        padding: '1rem',
+                        padding: '0.75rem 1rem',
                         borderBottom: '1px solid #e9ecef',
                         textAlign: 'center'
                       }}>

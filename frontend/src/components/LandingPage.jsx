@@ -69,175 +69,320 @@ const LandingPage = ({ onSuccess }) => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      minHeight: '100dvh',
+      width: '100vw',
+      maxWidth: '100%',
+      backgroundColor: '#f8fafc',
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '2rem 1rem',
-      position: 'relative'
+      flexDirection: 'column',
+      margin: 0,
+      padding: 0,
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      overflowX: 'hidden'
     }}>
-      {/* 관리자 로그인 버튼 - 오른쪽 상단 고정 */}
+      {/* 상단 네비게이션 */}
       <div style={{
-        position: 'absolute',
-        top: '2rem',
-        right: '2rem'
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '1rem 1.25rem',
+        backgroundColor: 'white',
+        borderBottom: '1px solid #e2e8f0',
+        position: 'sticky',
+        top: 0,
+        zIndex: 10
       }}>
+        <div style={{
+          fontSize: '1.25rem',
+          fontWeight: '700',
+          color: '#1a202c'
+        }}>
+          Cart
+        </div>
         <Link 
           to="/login" 
           style={{
-            display: 'inline-block',
-            padding: '0.75rem 1.5rem',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            color: '#000000',
-            backgroundColor: 'white',
-            border: '2px solid #000000',
-            borderRadius: '8px',
+            padding: '0.5rem 0.875rem',
+            fontSize: '0.8rem',
+            fontWeight: '500',
+            color: '#4a5568',
+            backgroundColor: '#f7fafc',
+            border: '1px solid #e2e8f0',
+            borderRadius: '6px',
             textDecoration: 'none',
-            transition: 'all 0.2s ease',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+            transition: 'all 0.2s ease'
           }}
         >
-          관리자 로그인
+          관리자
         </Link>
       </div>
 
-      {/* 메인 카드 */}
+      {/* 상단 광고/소개 영역 */}
       <div style={{
-        maxWidth: '500px',
-        width: '100%',
-        background: 'white',
-        borderRadius: '12px',
-        boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-        overflow: 'hidden'
+        flex: 1,
+        backgroundColor: 'white',
+        padding: '2rem 1.25rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        minHeight: '40vh'
       }}>
-        <div style={{ padding: '2rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h1 style={{
-              fontSize: '2rem', 
-              fontWeight: '700', 
-              marginBottom: '0.5rem', 
-              color: '#000000'
+        {/* 메인 타이틀 */}
+        <h1 style={{
+          fontSize: '2.5rem',
+          fontWeight: '800',
+          color: '#1a202c',
+          margin: '0 0 0.75rem 0',
+          lineHeight: 1.2
+        }}>
+          Cart 프로젝트 광고내용들
+        </h1>
+      </div>
+
+      {/* 하단 입력 폼 영역 */}
+      <div style={{
+        backgroundColor: 'white',
+        borderTop: '1px solid #e2e8f0',
+        borderTopLeftRadius: '24px',
+        borderTopRightRadius: '24px',
+        padding: '2rem 1.25rem',
+        paddingBottom: 'calc(2rem + env(safe-area-inset-bottom))', // iOS 하단 안전영역
+        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.08)'
+      }}>
+        {/* 폼 헤더 */}
+        <div style={{
+          textAlign: 'center',
+          marginBottom: '1.5rem'
+        }}>
+          <div style={{
+            width: '40px',
+            height: '4px',
+            backgroundColor: '#e2e8f0',
+            borderRadius: '2px',
+            margin: '0 auto 1rem auto'
+          }} />
+          <h3 style={{
+            fontSize: '1.25rem',
+            fontWeight: '700',
+            color: '#1a202c',
+            margin: '0 0 0.5rem 0'
+          }}>
+            상담 신청하기
+          </h3>
+          <p style={{
+            fontSize: '0.9rem',
+            color: '#64748b',
+            margin: 0
+          }}>
+            간단한 정보만 입력해주세요
+          </p>
+        </div>
+
+        {/* 입력 폼 */}
+        <form onSubmit={handleSubmit}>
+          {/* 이름 */}
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              color: '#374151'
             }}>
-              Cart 프로젝트
-            </h1>
-            <p style={{ color: '#6c757d', fontSize: '1rem' }}>간단한 정보만 입력해주세요</p>
-          </div>
-
-          <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '0.5rem',
-                fontWeight: '600',
-                color: '#212529',
-                fontSize: '0.875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
-              }}>
-                이름 *
-              </label>
-              <input
-                type="text"
-                value={formData.name}
-                onChange={handleInputChange}
-                name="name"
-                placeholder="홍길동"
-                style={{
-                  width: '100%',
-                  padding: '0.875rem 1rem',
-                  fontSize: '1rem',
-                  border: errors.name ? '2px solid #dc3545' : '2px solid #e9ecef',
-                  borderRadius: '8px',
-                  backgroundColor: 'white',
-                  transition: 'border-color 0.2s ease'
-                }}
-              />
-              {errors.name && <div style={{color: '#dc3545', fontSize: '0.875rem', marginTop: '0.25rem'}}>{errors.name}</div>}
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '0.5rem',
-                fontWeight: '600',
-                color: '#212529',
-                fontSize: '0.875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
-              }}>
-                전화번호 *
-              </label>
-              <input
-                type="tel"
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                name="phoneNumber"
-                placeholder="010-1234-5678"
-                maxLength="13"
-                style={{
-                  width: '100%',
-                  padding: '0.875rem 1rem',
-                  fontSize: '1rem',
-                  border: errors.phoneNumber ? '2px solid #dc3545' : '2px solid #e9ecef',
-                  borderRadius: '8px',
-                  backgroundColor: 'white',
-                  transition: 'border-color 0.2s ease'
-                }}
-              />
-              {errors.phoneNumber && <div style={{color: '#dc3545', fontSize: '0.875rem', marginTop: '0.25rem'}}>{errors.phoneNumber}</div>}
-            </div>
-
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{
-                display: 'block',
-                marginBottom: '0.5rem',
-                fontWeight: '600',
-                color: '#212529',
-                fontSize: '0.875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
-              }}>
-                업체명 *
-              </label>
-              <input
-                type="text"
-                value={formData.companyName}
-                onChange={handleInputChange}
-                name="companyName"
-                placeholder="(주)Cart"
-                style={{
-                  width: '100%',
-                  padding: '0.875rem 1rem',
-                  fontSize: '1rem',
-                  border: errors.companyName ? '2px solid #dc3545' : '2px solid #e9ecef',
-                  borderRadius: '8px',
-                  backgroundColor: 'white',
-                  transition: 'border-color 0.2s ease'
-                }}
-              />
-              {errors.companyName && <div style={{color: '#dc3545', fontSize: '0.875rem', marginTop: '0.25rem'}}>{errors.companyName}</div>}
-            </div>
-
-            <button 
-              type="submit" 
-              disabled={isSubmitting}
+              이름 *
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="홍길동"
               style={{
                 width: '100%',
-                padding: '1rem 2rem',
-                fontSize: '1.1rem',
-                fontWeight: '600',
-                backgroundColor: isSubmitting ? '#666666' : '#000000',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease'
+                padding: '0.875rem 1rem',
+                fontSize: '16px',
+                color: '#1a202c',
+                border: errors.name ? '2px solid #ef4444' : '2px solid #e5e7eb',
+                borderRadius: '12px',
+                backgroundColor: '#fafafa',
+                outline: 'none',
+                transition: 'all 0.2s ease',
+                boxSizing: 'border-box'
               }}
-            >
-              {isSubmitting ? '등록 중...' : '상담 신청하기'}
-            </button>
-          </form>
+              onFocus={(e) => {
+                e.target.style.backgroundColor = 'white';
+                e.target.style.borderColor = errors.name ? '#ef4444' : '#4f46e5';
+              }}
+              onBlur={(e) => {
+                e.target.style.backgroundColor = '#fafafa';
+                e.target.style.borderColor = errors.name ? '#ef4444' : '#e5e7eb';
+              }}
+            />
+            {errors.name && (
+              <p style={{
+                color: '#ef4444',
+                fontSize: '0.75rem',
+                marginTop: '0.25rem',
+                margin: '0.25rem 0 0 0'
+              }}>
+                {errors.name}
+              </p>
+            )}
+          </div>
+
+          {/* 전화번호 */}
+          <div style={{ marginBottom: '1.25rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              color: '#374151'
+            }}>
+              전화번호 *
+            </label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              placeholder="010-1234-5678"
+              maxLength="13"
+              style={{
+                width: '100%',
+                padding: '0.875rem 1rem',
+                fontSize: '16px',
+                color: '#1a202c',
+                border: errors.phoneNumber ? '2px solid #ef4444' : '2px solid #e5e7eb',
+                borderRadius: '12px',
+                backgroundColor: '#fafafa',
+                outline: 'none',
+                transition: 'all 0.2s ease',
+                boxSizing: 'border-box'
+              }}
+              onFocus={(e) => {
+                e.target.style.backgroundColor = 'white';
+                e.target.style.borderColor = errors.phoneNumber ? '#ef4444' : '#4f46e5';
+              }}
+              onBlur={(e) => {
+                e.target.style.backgroundColor = '#fafafa';
+                e.target.style.borderColor = errors.phoneNumber ? '#ef4444' : '#e5e7eb';
+              }}
+            />
+            {errors.phoneNumber && (
+              <p style={{
+                color: '#ef4444',
+                fontSize: '0.75rem',
+                marginTop: '0.25rem',
+                margin: '0.25rem 0 0 0'
+              }}>
+                {errors.phoneNumber}
+              </p>
+            )}
+          </div>
+
+          {/* 업체명 */}
+          <div style={{ marginBottom: '2rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              color: '#374151'
+            }}>
+              업체명 *
+            </label>
+            <input
+              type="text"
+              name="companyName"
+              value={formData.companyName}
+              onChange={handleInputChange}
+              placeholder="(주)Cart"
+              style={{
+                width: '100%',
+                padding: '0.875rem 1rem',
+                fontSize: '16px',
+                color: '#1a202c',
+                border: errors.companyName ? '2px solid #ef4444' : '2px solid #e5e7eb',
+                borderRadius: '12px',
+                backgroundColor: '#fafafa',
+                outline: 'none',
+                transition: 'all 0.2s ease',
+                boxSizing: 'border-box'
+              }}
+              onFocus={(e) => {
+                e.target.style.backgroundColor = 'white';
+                e.target.style.borderColor = errors.companyName ? '#ef4444' : '#4f46e5';
+              }}
+              onBlur={(e) => {
+                e.target.style.backgroundColor = '#fafafa';
+                e.target.style.borderColor = errors.companyName ? '#ef4444' : '#e5e7eb';
+              }}
+            />
+            {errors.companyName && (
+              <p style={{
+                color: '#ef4444',
+                fontSize: '0.75rem',
+                marginTop: '0.25rem',
+                margin: '0.25rem 0 0 0'
+              }}>
+                {errors.companyName}
+              </p>
+            )}
+          </div>
+
+          {/* 제출 버튼 */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            style={{
+              width: '100%',
+              padding: '1rem',
+              fontSize: '1rem',
+              fontWeight: '600',
+              color: 'white',
+              backgroundColor: isSubmitting ? '#9ca3af' : '#4f46e5',
+              border: 'none',
+              borderRadius: '12px',
+              cursor: isSubmitting ? 'not-allowed' : 'pointer',
+              transition: 'all 0.2s ease',
+              outline: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              boxShadow: isSubmitting ? 'none' : '0 4px 12px rgba(79, 70, 229, 0.3)'
+            }}
+            onTouchStart={(e) => {
+              if (!isSubmitting) {
+                e.target.style.transform = 'translateY(1px)';
+                e.target.style.boxShadow = '0 2px 8px rgba(79, 70, 229, 0.3)';
+              }
+            }}
+            onTouchEnd={(e) => {
+              if (!isSubmitting) {
+                setTimeout(() => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(79, 70, 229, 0.3)';
+                }, 100);
+              }
+            }}
+          >
+            {isSubmitting ? '신청 중...' : '상담 신청하기'}
+          </button>
+        </form>
+
+        {/* 하단 안내 */}
+        <div style={{
+          textAlign: 'center',
+          marginTop: '1.5rem'
+        }}>
+          <p style={{
+            fontSize: '0.8rem',
+            color: '#9ca3af',
+            margin: 0
+          }}>
+            빠른 시일 내에 연락드리겠습니다
+          </p>
         </div>
       </div>
     </div>

@@ -62,20 +62,23 @@ const LoginPage = ({ onLoginSuccess }) => {
       width: '100vw',
       background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '2rem 1rem',
-      zIndex: 1000
+      padding: '1rem',
+      zIndex: 1000,
+      overflow: 'auto'
     }}>
       <div style={{
-        maxWidth: '400px',
         width: '100%',
+        maxWidth: '400px',
         background: 'white',
-        borderRadius: '12px',
+        borderRadius: '16px',
         boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        animation: 'slideIn 0.3s ease-out'
       }}>
-        <div style={{ padding: '2rem' }}>
+        <div style={{ padding: '1.5rem' }}>
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
             <h2 style={{
               fontSize: '1.5rem', 
@@ -85,19 +88,22 @@ const LoginPage = ({ onLoginSuccess }) => {
             }}>
               관리자 로그인
             </h2>
-            <p style={{ color: '#6c757d' }}>관리자 계정으로 로그인하세요</p>
+            <p style={{ 
+              color: '#6c757d',
+              fontSize: '0.9rem'
+            }}>
+              관리자 계정으로 로그인하세요
+            </p>
           </div>
 
           <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: '1.25rem' }}>
               <label style={{
                 display: 'block',
                 marginBottom: '0.5rem',
                 fontWeight: '600',
                 color: '#212529',
-                fontSize: '0.875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                fontSize: '0.875rem'
               }}>
                 아이디 *
               </label>
@@ -106,15 +112,17 @@ const LoginPage = ({ onLoginSuccess }) => {
                 value={formData.username}
                 onChange={handleInputChange}
                 name="username"
-                placeholder="admin"
+                placeholder="관리자 아이디를 입력하세요"
+                autoComplete="username"
                 style={{
                   width: '100%',
-                  padding: '0.875rem 1rem',
-                  fontSize: '1rem',
+                  padding: '1rem',
+                  fontSize: '16px', // iOS 줌 방지
                   border: errors.username ? '2px solid #dc3545' : '2px solid #e9ecef',
-                  borderRadius: '8px',
+                  borderRadius: '12px',
                   backgroundColor: 'white',
-                  transition: 'border-color 0.2s ease'
+                  transition: 'border-color 0.2s ease',
+                  outline: 'none'
                 }}
                 onFocus={(e) => {
                   if (!errors.username) {
@@ -127,7 +135,15 @@ const LoginPage = ({ onLoginSuccess }) => {
                   }
                 }}
               />
-              {errors.username && <div style={{color: '#dc3545', fontSize: '0.875rem', marginTop: '0.25rem'}}>{errors.username}</div>}
+              {errors.username && (
+                <div style={{
+                  color: '#dc3545', 
+                  fontSize: '0.75rem', 
+                  marginTop: '0.25rem'
+                }}>
+                  {errors.username}
+                </div>
+              )}
             </div>
 
             <div style={{ marginBottom: '1.5rem' }}>
@@ -136,9 +152,7 @@ const LoginPage = ({ onLoginSuccess }) => {
                 marginBottom: '0.5rem',
                 fontWeight: '600',
                 color: '#212529',
-                fontSize: '0.875rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                fontSize: '0.875rem'
               }}>
                 비밀번호 *
               </label>
@@ -147,15 +161,17 @@ const LoginPage = ({ onLoginSuccess }) => {
                 value={formData.password}
                 onChange={handleInputChange}
                 name="password"
-                placeholder="1234"
+                placeholder="관리자 비밀번호를 입력하세요"
+                autoComplete="current-password"
                 style={{
                   width: '100%',
-                  padding: '0.875rem 1rem',
-                  fontSize: '1rem',
+                  padding: '1rem',
+                  fontSize: '16px', // iOS 줌 방지
                   border: errors.password ? '2px solid #dc3545' : '2px solid #e9ecef',
-                  borderRadius: '8px',
+                  borderRadius: '12px',
                   backgroundColor: 'white',
-                  transition: 'border-color 0.2s ease'
+                  transition: 'border-color 0.2s ease',
+                  outline: 'none'
                 }}
                 onFocus={(e) => {
                   if (!errors.password) {
@@ -168,7 +184,15 @@ const LoginPage = ({ onLoginSuccess }) => {
                   }
                 }}
               />
-              {errors.password && <div style={{color: '#dc3545', fontSize: '0.875rem', marginTop: '0.25rem'}}>{errors.password}</div>}
+              {errors.password && (
+                <div style={{
+                  color: '#dc3545', 
+                  fontSize: '0.75rem', 
+                  marginTop: '0.25rem'
+                }}>
+                  {errors.password}
+                </div>
+              )}
             </div>
 
             <button 
@@ -176,27 +200,29 @@ const LoginPage = ({ onLoginSuccess }) => {
               disabled={isSubmitting}
               style={{
                 width: '100%',
-                padding: '0.875rem 2rem',
-                fontSize: '1rem',
+                padding: '1.25rem 2rem',
+                fontSize: '1.1rem',
                 fontWeight: '600',
                 backgroundColor: isSubmitting ? '#666666' : '#000000',
                 color: 'white',
                 border: 'none',
-                borderRadius: '8px',
+                borderRadius: '12px',
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
                 marginBottom: '1rem',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                outline: 'none',
+                WebkitTapHighlightColor: 'transparent'
               }}
-              onMouseEnter={(e) => {
+              onTouchStart={(e) => {
                 if (!isSubmitting) {
                   e.target.style.backgroundColor = '#333333';
-                  e.target.style.transform = 'translateY(-1px)';
                 }
               }}
-              onMouseLeave={(e) => {
+              onTouchEnd={(e) => {
                 if (!isSubmitting) {
-                  e.target.style.backgroundColor = '#000000';
-                  e.target.style.transform = 'translateY(0)';
+                  setTimeout(() => {
+                    e.target.style.backgroundColor = '#000000';
+                  }, 150);
                 }
               }}
             >
@@ -204,31 +230,32 @@ const LoginPage = ({ onLoginSuccess }) => {
             </button>
           </form>
 
-          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            <small style={{ color: '#6c757d' }}>기본 계정: admin / 1234</small>
-          </div>
-
           <div style={{ textAlign: 'center' }}>
             <Link 
               to="/" 
               style={{
                 display: 'inline-block',
-                padding: '0.5rem 1rem',
-                fontSize: '0.875rem',
+                width: '100%',
+                padding: '1rem 2rem',
+                fontSize: '1rem',
+                fontWeight: '500',
                 color: '#000000',
                 border: '2px solid #000000',
-                borderRadius: '8px',
+                borderRadius: '12px',
                 textDecoration: 'none',
                 backgroundColor: 'transparent',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                WebkitTapHighlightColor: 'transparent'
               }}
-              onMouseEnter={(e) => {
+              onTouchStart={(e) => {
                 e.target.style.backgroundColor = '#000000';
                 e.target.style.color = 'white';
               }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'transparent';
-                e.target.style.color = '#000000';
+              onTouchEnd={(e) => {
+                setTimeout(() => {
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = '#000000';
+                }, 150);
               }}
             >
               메인으로 돌아가기

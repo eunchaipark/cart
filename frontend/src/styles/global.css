@@ -1,3 +1,4 @@
+/* 전체 리셋 및 기본 설정 */
 * {
   margin: 0;
   padding: 0;
@@ -15,15 +16,464 @@
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
   --border-radius: 12px;
   --border-radius-sm: 8px;
+  --border-radius-lg: 16px;
+}
+
+/* 기본 폰트 및 레이아웃 */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--background-color);
+  overflow-x: hidden;
 }
 
 .App {
   min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* 특별한 클래스를 가진 입력 필드에 대한 강제 placeholder 스타일 */
+.login-input::placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+.login-input::-webkit-input-placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+.login-input::-moz-placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+.login-input:-ms-input-placeholder {
+  color: #9ca3af !important;
+  opacity: 1 !important;
+}
+
+/* 전체 입력 필드 스타일 강제 적용 */
+input, textarea, select {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* placeholder 스타일 */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important;
+  opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+  color: #9ca3af !important;
+}
+
+input::-moz-placeholder {
+  color: #9ca3af !important;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder {
+  color: #9ca3af !important;
+}
+
+input:focus, textarea:focus, select:focus,
+input:active, textarea:active, select:active {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+/* 자동완성 스타일 오버라이드 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+}
+
+/* 비밀번호 필드 특별 처리 */
+input[type="password"] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-text-security: disc;
+}
+
+input[type="text"], input[type="tel"] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner-modern {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 로그인 페이지 애니메이션 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 모바일 우선 반응형 디자인 */
+
+/* 모바일 기본 (0px - 767px) */
+@media (max-width: 767px) {
+  /* 페이지 컨테이너 */
+  .page-container {
+    padding: 0.75rem;
+  }
+
+  /* 폰트 크기 조정 */
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  /* 버튼 스타일 */
+  button, .btn {
+    min-height: 48px; /* 터치 친화적 */
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+  }
+
+  /* 입력 필드 - 강제 스타일 적용 */
+  input, textarea, select {
+    min-height: 48px;
+    font-size: 16px; /* iOS 줌 방지 */
+    padding: 1rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.2s ease;
+    color: #000000 !important; /* 강제 검은색 */
+    background-color: #ffffff !important; /* 강제 흰색 배경 */
+    -webkit-text-fill-color: #000000 !important; /* Safari 대응 */
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+  }
+
+  /* 카드 스타일 */
+  .card, .modern-card {
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+
+  /* 간격 조정 */
+  .mb-1 { margin-bottom: 0.5rem; }
+  .mb-2 { margin-bottom: 0.75rem; }
+  .mb-3 { margin-bottom: 1rem; }
+  .mb-4 { margin-bottom: 1.5rem; }
+  .mt-1 { margin-top: 0.5rem; }
+  .mt-2 { margin-top: 0.75rem; }
+  .mt-3 { margin-top: 1rem; }
+  .mt-4 { margin-top: 1.5rem; }
+}
+
+/* 작은 모바일 (0px - 479px) */
+@media (max-width: 479px) {
+  .page-container {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  button, .btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  input, textarea, select {
+    padding: 0.875rem;
+  }
+}
+
+/* 매우 작은 화면 (0px - 359px) */
+@media (max-width: 359px) {
+  .page-container {
+    padding: 0.25rem;
+  }
+
+  h1 {
+    font-size: 1.375rem;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+  }
+
+  button, .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* 태블릿 (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  button, .btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* 태블릿에서는 좀 더 큰 카드 */
+  .card, .modern-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* 데스크톱 (1024px 이상) - 관리자 페이지 전용 */
+@media (min-width: 1024px) {
+  /* 관리자 페이지만 데스크톱 최적화 */
+  .admin-page {
+    padding: 2rem;
+  }
+
+  .admin-table {
+    font-size: 0.875rem;
+  }
+
+  .admin-card {
+    border-radius: 12px;
+  }
+
+  /* 일반 페이지는 모바일 중심 유지 */
+  .landing-page,
+  .success-page,
+  .login-page {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* 가로모드 모바일 대응 */
+@media (max-height: 600px) and (orientation: landscape) {
+  .page-container {
+    padding: 0.5rem;
+    justify-content: flex-start;
+    padding-top: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  button, .btn {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .card, .modern-card {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* 터치 디바이스 최적화 */
+@media (pointer: coarse) {
+  button, .btn, a, input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* 터치 반응성 개선 */
+  button:active, .btn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* 다크모드 지원 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #333333;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+  }
+}
+
+/* 접근성 - 움직임 감소 선호 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 높은 대비 모드 */
+@media (prefers-contrast: high) {
+  input, textarea, select {
+    border-width: 3px;
+  }
+
+  button, .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* 프린트 스타일 */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  .page-container {
+    padding: 0;
+  }
+
+  button, .btn {
+    display: none;
+  }
+
+  .card, .modern-card {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+}
+
+/* iOS Safari 특정 수정 */
+@supports (-webkit-touch-callout: none) {
+  input, textarea {
+    font-size: 16px; /* 줌 방지 */
+  }
+
+  button, .btn {
+    -webkit-appearance: none;
+    border-radius: 12px;
+  }
+}
+
+/* 유틸리티 클래스 */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.d-flex { display: flex; }
+.d-block { display: block; }
+.d-none { display: none; }
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+
+.m-0 { margin: 0; }
+.m-1 { margin: 0.5rem; }
+.m-2 { margin: 1rem; }
+.m-3 { margin: 1.5rem; }
+
+/* 스크롤 영역 최적화 */
+.scroll-area {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* 포커스 표시 개선 */
+*:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+button:focus, .btn:focus {
+  outline-offset: 4px;
 }
